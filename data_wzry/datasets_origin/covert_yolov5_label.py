@@ -86,5 +86,6 @@ if __name__ == '__main__':
 
     get_classed()
     print(classed_map)
+    print(classed_map.keys())
     covert_label()
     write_label()
