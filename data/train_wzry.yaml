@@ -1,4 +1,4 @@
-path: ../datasets_wzry  # dataset root dir
+path: ../wz-od/datasets_wzry  # dataset root dir
 train: images  # train images (relative to 'path') 128 images
 val: images  # val images (relative to 'path') 128 images
 test:  # test images (optional)
