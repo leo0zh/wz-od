@@ -149,9 +149,9 @@ if __name__ == '__main__':
             cc_img.save(cc_img_path, "png")
 
             # p2-1 中心裁剪 中心裁剪png
-            cc_img20 = img_corp_center(img_png, crop_size=14)
-            cc_img20_path = os.path.join(hero_dif, f"{filename}_cc20.png")
-            cc_img20.save(cc_img20_path, "png")
+            # cc_img20 = img_corp_center(img_png, crop_size=14)
+            # cc_img20_path = os.path.join(hero_dif, f"{filename}_cc20.png")
+            # cc_img20.save(cc_img20_path, "png")
 
             # p3 圆角裁剪png
             c_img = circle_img(img_png_path)
@@ -164,26 +164,26 @@ if __name__ == '__main__':
             c_img2.save(c_img2_path, "png")
 
             # p5 圆角裁剪png
-            c_img20 = circle_img(cc_img20_path)
-            c_img20_path = os.path.join(hero_dif, f"{filename}_cc20#circle.png")
-            c_img20.save(c_img20_path, "png")
+            # c_img20 = circle_img(cc_img20_path)
+            # c_img20_path = os.path.join(hero_dif, f"{filename}_cc20#circle.png")
+            # c_img20.save(c_img20_path, "png")
 
             def mock_from(source_png_path):
 
-                resize_list = [(160, 160), (60, 60), (45, 45), (30, 30)]
-                # resize_list = [(60, 60), (45, 45), (30, 30)]
+                # resize_list = [(160, 160), (60, 60), (45, 45), (30, 30)]
+                resize_list = [(60, 60), (45, 45), (30, 30)]
                 for size in resize_list:
                     img = img_resize(source_png_path, size)
                     img.save(source_png_path.replace(".png", f"-{size[0]}.png"), "png")
 
-            mock_from(img_png_path)
-            mock_from(cc_img_path)
+            # mock_from(img_png_path)
+            # mock_from(cc_img_path)
             mock_from(c_img_path)
             mock_from(c_img2_path)
 
-            # os.remove(img_png_path)
-            # os.remove(cc_l_img_path)
-            # os.remove(cc_img_path)
+            os.remove(img_png_path)
+            os.remove(cc_l_img_path)
+            os.remove(cc_img_path)
 
             # for file in os.listdir(hero_dif):
             #     _path = os.path.abspath(os.path.join(hero_dif, file))
@@ -202,17 +202,14 @@ if __name__ == '__main__':
             for bg_img in os.listdir(path_base_bg):
                 if bg_img.endswith(".DS_Store"):
                     continue
-                if bg_img.endswith("jpg"):
-                    label_image_name_transform = f"{bg_img.replace('.jpg', f'{hero_dir}-{count}')}"
-                else:
-                    label_image_name_transform = f"{bg_img.replace('.png', f'{hero_dir}-{count}')}"
+                label_image_name_transform = f"{bg_img.replace('.jpg', f'{hero_dir}-{count}')}"
                 txt_map[label_image_name_transform] = []
                 label_image_path = os.path.join(path_base_bg, bg_img)
 
                 img_bg = Image.open(label_image_path)
                 pasted_img = img_bg.convert('RGBA')
                 hero_dir_path = os.path.join(out_hero_mock, hero_dir)
-                for i in range(0, 1):
+                for i in range(0, 3):
                     for hero_img in os.listdir(hero_dir_path):
                         if bg_img.endswith(".DS_Store"):
                             continue
@@ -232,6 +229,5 @@ if __name__ == '__main__':
 
 
     create_mock_base()
-    for i in range(0, 2):
+    for i in range(0, 10):
         combine(i)
-    print("done")
